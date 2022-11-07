@@ -1,0 +1,8 @@
+{
+    "name": "dreamengine-cli",
+    "contributors": ["Metin"],
+    "license": "MIT",
+    "classPath": "src",
+    "dependencies": {"comma":"", "haxegen":""},
+    "main":"dreamengine.cli.Main"
+}
