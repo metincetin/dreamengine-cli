@@ -7,7 +7,6 @@ import sys.FileSystem;
 import haxe.Json;
 import sys.io.File;
 import haxe.io.Path;
-import haxegen.*
 
 class ProjectGenerator {
 	public static function generateProject(app:CliApp, gameName:String, path:String) {
@@ -24,12 +23,14 @@ class ProjectGenerator {
 		FileSystem.createDirectory(Path.join([path, "Shaders"]));
 
 		createProjectConfig(gameName, path);
+		
 		createKhaFile(gameName, path);
-
-		installEngineDependencies(app);
-
+		
+		createMainClass(Path.join([path, "src"]));
+		
 		Sys.setCwd(c);
 	}
+
 
 	static function createKhaFile(gameName:String, path:String) {
 		var khafilePath = Path.join([path, "khafile.js"]);
@@ -37,16 +38,35 @@ class ProjectGenerator {
 
 		content += 'let project = new Project("${gameName}");\n';
 		content += 'project.addAssets("Assets/**");\n';
-		content += 'project.addAssets("Libraries/dreamengine/assets/**");\n';
 		content += 'project.addShaders("Shaders/**");\n';
 		content += 'project.addSources("src");\n';
+		content += 'await project.addProject("Libraries/dreamengine")\n';
 		content += 'resolve(project);';
 
 		File.saveContent(khafilePath, content);
 	}
 
-	static function createMainClass(path:String){
-		var class = new Class();
+	static function createMainClass(path:String) {
+		var mainFile = new haxegen.SourceFile({
+			name: "Main",
+			imports: ["dreamengine.core.Engine", "kha.System"],
+			classes: [
+				new haxegen.Class({
+					name: "Main",
+					functions: [
+						new haxegen.Function({
+							name: "main",
+							accessModifier: Public,
+							isStatic: true
+						})
+					]
+				})
+			]
+		});
+
+		var filePath = Path.join([path, mainFile.getFileName()]);
+		
+		File.saveContent(filePath, mainFile.generate());
 	}
 
 	public static function installEngineDependencies(app:CliApp) {
@@ -65,15 +85,9 @@ class ProjectGenerator {
 		Sys.command("git clone https://github.com/Kode/Kha");
 
 		app.println("Setting up Kha");
-        Sys.command(Path.join([Sys.getCwd(),"kha/get_dlc"]));
-
-
+		Sys.command(Path.join([Sys.getCwd(), "Kha/get_dlc"]));
 
 		app.println(Style.color("Done", Green));
-	}
-
-	static function setupKha(app:CliApp) {
-		app.println("Setting up Kha");
 	}
 
 	static function createProjectConfig(gameName:String, path:String) {

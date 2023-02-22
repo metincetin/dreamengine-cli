@@ -26,7 +26,8 @@ class NewCommand extends comma.Command {
 	override function onExecuted(app:CliApp, values:Array<String>, options:ParsedOptions) {
 		var dirPath = Path.normalize(Path.join([Sys.getCwd(), values[0]]));
         var gameName = "";
-        
+		trace(dirPath);
+		trace(dirPath);
         {
             var spl = dirPath.split("/");
             gameName = spl[spl.length - 1];

@@ -8,7 +8,7 @@ class Main{
         app.addCommand(new DefaultCommand());
         app.addCommand(new NewCommand());
         app.addCommand(new InitCommand());
-
+        app.addCommand(new SetupCommand());
         app.start();
     }
 }

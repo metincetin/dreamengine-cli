@@ -7,8 +7,16 @@ import comma.OptionDefinition;
 class DefaultCommand extends comma.Command{
     public function new(){
         super();
-        addOptionDefinition(new OptionDefinition("help","h","Prints help message"));
     }
+
+    override function getName():String {
+        return "help";
+    }
+
+    override function getDescription():String {
+        return "Prints help message";
+    }
+
 
     override function onExecuted(app:CliApp, values:Array<String>, options:ParsedOptions) {
         app.printHelp();
