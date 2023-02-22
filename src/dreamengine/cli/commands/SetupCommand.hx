@@ -15,8 +15,7 @@ class SetupCommand extends comma.Command {
 
 	override function onExecuted(app:CliApp, values:Array<String>, options:ParsedOptions) {
 		switch(Sys.systemName()){
-			case "Linux":
-			case "Mac":
+			case "Linux" | "Mac":
 				app.println(Style.color("CLI will request root permission to move executable script to your path.", Yellow));
 				var scriptPath = Path.join([Sys.programPath(),"../../../../", 'scripts/dreamengine.sh']);
 				Sys.command('sudo cp ${scriptPath} /usr/local/bin/dreamengine');
