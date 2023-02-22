@@ -3,6 +3,10 @@
     "contributors": ["Metin"],
     "license": "MIT",
     "classPath": "src",
+    "description": "CLI for dream engine",
     "dependencies": {"comma":"", "haxegen":""},
+    "url": "https://github.com/metincetin/dreamengine_cli",
+    "version": "0.1.0",
+    "releasenote": "Initial commit",
     "main":"dreamengine.cli.Main"
 }

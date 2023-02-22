@@ -18,6 +18,6 @@ class SetupCommand extends comma.Command {
 
 
 	   var path = "/usr/local/bin/";
-	   File.saveContent(Path.join([path, "dreamengine"]), "#!/bin/sh\nhaxelib run dreamengine \"$@\"");
+	   File.saveContent(Path.join([path, "dreamengine"]), "#!/bin/sh\nhaxelib run dreamengine-cli \"$@\"");
     }
 }
