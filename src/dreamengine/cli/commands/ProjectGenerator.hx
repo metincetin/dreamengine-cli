@@ -70,9 +70,13 @@ class ProjectGenerator {
 	}
 
 	public static function installEngineDependencies(app:CliApp) {
+		
 		app.println(Style.color("Installing dependencies", Green));
-
+		
 		var c = Sys.getCwd();
+		var librariesPath = Path.join([c, "Libraries"]);
+		if (!FileSystem.exists(librariesPath))
+			FileSystem.createDirectory(librariesPath);
 
 		Sys.setCwd(Path.join([c, "Libraries"]));
 
