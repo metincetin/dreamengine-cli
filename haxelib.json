@@ -6,7 +6,7 @@
     "description": "CLI for dream engine",
     "dependencies": {"comma":"", "haxegen":""},
     "url": "https://github.com/metincetin/dreamengine_cli",
-    "version": "0.1.0",
-    "releasenote": "Initial commit",
+    "version": "0.1.1",
+    "releasenote": "Added setup command",
     "main":"dreamengine.cli.Main"
 }
