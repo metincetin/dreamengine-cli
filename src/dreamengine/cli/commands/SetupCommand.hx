@@ -16,15 +16,13 @@ class SetupCommand extends comma.Command {
 	override function onExecuted(app:CliApp, values:Array<String>, options:ParsedOptions) {
 		switch(Sys.systemName()){
 			case "Linux":
-				var pr = new sys.io.Process(Path.join([Sys.getCwd(), 'scripts/setup.sh']));
-				var code = pr.exitCode();
-				if (code != 0){
-					app.println('Error: ${code} - ${pr.stdout.readAll().toString()}');
-				}else{
-					app.println("Set up dreamengine in path");
-				}
-				pr.close();
 			case "Mac":
+				app.println(Style.color("CLI will request root permission to move executable script to your path.", Yellow));
+				var scriptPath = Path.join([Sys.programPath(),"../../../../", 'scripts/dreamengine.sh']);
+				Sys.command('sudo cp ${scriptPath} /usr/local/bin/dreamengine');
+				Sys.command('sudo chmod +x /usr/local/bin/dreamengine');
+				
+				app.println("Set up dreamengine in path");
 			case "Windows":
 		}
 	}
