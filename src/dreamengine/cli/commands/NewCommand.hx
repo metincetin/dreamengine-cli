@@ -1,5 +1,6 @@
 package dreamengine.cli.commands;
 
+import comma.Style;
 import haxe.io.Path;
 import haxe.Json;
 import sys.io.File;
@@ -26,8 +27,6 @@ class NewCommand extends comma.Command {
 	override function onExecuted(app:CliApp, values:Array<String>, options:ParsedOptions) {
 		var dirPath = Path.normalize(Path.join([Sys.getCwd(), values[0]]));
         var gameName = "";
-		trace(dirPath);
-		trace(dirPath);
         {
             var spl = dirPath.split("/");
             gameName = spl[spl.length - 1];
@@ -38,6 +37,6 @@ class NewCommand extends comma.Command {
 			return;
 		}
         ProjectGenerator.generateProject(app, gameName,dirPath);
-        app.println('Created project ${gameName}');
+        app.println('Created project ${gameName}. \nRun ${Style.textStyle("`cd " + gameName + "`", Bold)} and ${Style.textStyle("`dreamengine install`", Bold)} to install dependencies.');
 	}
 }

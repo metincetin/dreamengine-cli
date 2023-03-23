@@ -4,7 +4,7 @@ import comma.*;
 
 class Main{
     static function main(){
-        var app = new CliApp("dreamengine-cli", "0.1.0");
+        var app = new CliApp("dreamengine-cli", "0.1.4");
         app.addCommand(new DefaultCommand());
         app.addCommand(new NewCommand());
         app.addCommand(new InitCommand());

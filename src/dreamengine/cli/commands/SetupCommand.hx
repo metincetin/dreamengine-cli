@@ -21,7 +21,7 @@ class SetupCommand extends comma.Command {
 				Sys.command('sudo cp ${scriptPath} /usr/local/bin/dreamengine');
 				Sys.command('sudo chmod +x /usr/local/bin/dreamengine');
 				
-				app.println("Set up dreamengine in path");
+				app.println("dreamengine is set in path");
 			case "Windows":
 		}
 	}
