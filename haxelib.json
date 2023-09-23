@@ -6,7 +6,7 @@
     "description": "CLI for dream engine",
     "dependencies": {"comma":"", "haxegen":""},
     "url": "https://github.com/metincetin/dreamengine_cli",
-    "version": "0.1.4",
-    "releasenote": "Fixes on setup command for macos",
+    "version": "0.2.0",
+    "releasenote": "Added run command",
     "main":"dreamengine.cli.Main"
 }
